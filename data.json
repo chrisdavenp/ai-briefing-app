@@ -1,0 +1,472 @@
+[
+  {
+    "date": "2026-04-07",
+    "topline": [],
+    "stories": []
+  },
+  {
+    "date": "2026-04-08",
+    "topline": [],
+    "stories": []
+  },
+  {
+    "date": "2026-04-09",
+    "topline": [],
+    "stories": [
+      {
+        "date": "2026-04-09",
+        "section_number": 1,
+        "section_name": "Frontier Labs",
+        "headline": "Meta finally ships a serious model — and it's proprietary.",
+        "body": "Nine months after paying roughly $14 billion to bring Alexandr Wang in-house, Meta Superintelligence Labs released Muse Spark, landing at #4 on Artificial Analysis v4.0 with a 52, behind Gemini 3.1 Pro, GPT-5.4 (both 57) and Claude Opus 4.6 (53). The meaningful shift is the license: after years of Llama-as-open-weights flag-waving, Muse Spark is closed. Meta says it \"hopes\" to open future versions. That climbdown — paired with 2026 capex guidance of $115–135B, nearly double last year — tells you everything about how the competitive frame has changed. Open-source was a hedge when Meta wasn't at the frontier; now that Wang has something to defend, the strategy rhymes with OpenAI's. The market cheered anyway, sending META up 6.5% on the day.\nSource: CNBC\n\nAnthropic's run-rate tripled in four months, and compute is the bottleneck.\nAnthropic's annualized revenue now stands at $30 billion, up from $9B at the end of 2025 — a roughly 58% surge in March alone and, remarkably, ahead of OpenAI's $25B February figure. More than 1,000 enterprise customers are spending $1M+ annualized. The company also announced an extension to its $50B U.S. compute commitment via a new deal with Google and Broadcom for TPU capacity coming online in 2027. The subtext is unflattering: Anthropic has visibly been unable to meet demand for agentic products like OpenClaw. That's a great problem to have, but it's also a reminder that in this cycle, revenue growth is gated by silicon, not by sales.\nSource: TechCrunch\n\nClaude Mythos is too dangerous to ship — so Anthropic launched Glasswing instead.\nAnthropic unveiled Project Glasswing, a 40-company coalition including Microsoft, Amazon, Apple, Google, NVIDIA, CrowdStrike and Palo Alto Networks, given preview access to Claude Mythos specifically to hunt zero-days before production cyber-capable models from OpenAI and Google ship. The program comes with $100M in usage credits and $4M for open-source security orgs. Read this as the first concrete instance of a frontier lab treating its own capability gain as a defense public good — and pre-empting the regulatory narrative by going first.\nSource: Fortune\n\nGoogle ships Gemma 4 under Apache 2.0 — the open-weights baton passes.\nWith Meta retreating behind a proprietary license, Google DeepMind's Gemma 4 release is the open-weight story of the month: four models running on a single H100, frontier-adjacent benchmarks, Apache 2.0 terms. Google is explicitly courting enterprises that want data control without the LLaMA drift. Combined with Mistral Small 4 and DeepSeek's continued pressure, the \"closed is necessary for quality\" argument has weakened meaningfully this quarter. Separately, DeepMind's AlphaEvolve agentic coder landed its first external commercial case — French logistics firm FM Logistic used it to optimize warehouse pick paths, a quieter but more important data point for the \"AI writes its own optimizations\" thesis than any benchmark.\nSources: Hum AI, LLM-Stats\n\nCartel or coalition? OpenAI, Anthropic and Google unite against Chinese distillation.\nThe three U.S. frontier labs are using the Frontier Model Forum to share threat intel on DeepSeek, Moonshot and MiniMax. Anthropic alleges the three Chinese labs generated 16M exchanges via 24,000 fraudulent accounts to distill Claude. This is the first time the Forum — which has mostly served as a venue for polite safety pledges — has been stood up as an active counterintelligence operation. Expect regulators to notice the precedent.",
+        "body_preview": "Nine months after paying roughly $14 billion to bring Alexandr Wang in-house, Meta Superintelligence Labs released Muse Spark, landing at #4 on Artifi",
+        "sources": [],
+        "metrics": [
+          {
+            "type": "percentage",
+            "value": "6.5%"
+          },
+          {
+            "type": "percentage",
+            "value": "58%"
+          },
+          {
+            "type": "number",
+            "value": "135B"
+          },
+          {
+            "type": "number",
+            "value": "$9B"
+          }
+        ],
+        "companies": [
+          "OpenAI",
+          "Anthropic",
+          "Google",
+          "Microsoft",
+          "Meta",
+          "Apple",
+          "Amazon",
+          "NVIDIA",
+          "Mistral",
+          "Deepmind",
+          "CrowdStrike",
+          "Broadcom",
+          "Intel",
+          "Claude",
+          "Gemini",
+          "LLaMA"
+        ]
+      },
+      {
+        "date": "2026-04-09",
+        "section_number": 2,
+        "section_name": "Hyperscalers & Infrastructure",
+        "headline": "NVIDIA's fiscal 2026: $216B in revenue, 90% of it from data center.",
+        "body": "Nvidia closed fiscal 2026 at $215.9B revenue (+65% YoY), $120.1B net income, 71.1% gross margin — with $193.7B of that from data center alone. Guidance for Q1 FY27 came in at ~$78B, a massive sequential step-up. The company has disclosed $500B+ in Blackwell + Rubin commitments through end-2026, and Vera Rubin enters the market in H2. One nuance worth tracking: KeyBanc reported Nvidia may have trimmed Rubin production plans, and HBM4 yields at SK Hynix and Samsung remain below mature HBM3e — a bottleneck that could become the ceiling on 2026 revenue whether demand softens or not.\nSources: CNBC, Yahoo Finance\n\nAMD's Helios lands — and the memory pitch actually matters.\nLisa Su unveiled Helios at CES 2026 with 72 MI455X GPUs per rack, guiding Q3 2026 ship. The technical story worth internalizing: AMD ships 432GB of memory per rack vs. Nvidia's 288GB on Rubin NVL72. For inference workloads on large models, that memory headroom eliminates the need for tensor parallelism — a genuine architectural advantage, not just a spec-sheet win. Nvidia counters with NVLink 6 interconnect bandwidth that AMD has no equivalent for. The OpenAI-AMD deal from last October and Meta's dual-sourcing now look increasingly strategic: in a world where HBM is the bottleneck, a second source with more of it is worth paying for. AMD stock is up +76% over 12 months, outpacing Nvidia's +30%.\nSources: Futurum Group, Motley Fool\n\nCoreWeave rides the Meta deal; Oracle stumbles.\nCoreWeave shares have recovered to the $88–95 range after announcing a $21B Meta partnership, a 120%+ return for IPO investors in just over a year. Q4 revenue hit $1.57B (+110% YoY), though net loss widened to $452M under $388M of interest expense — the classic GPU-cloud trade of burning cash for power and capacity. 2026 capex guidance: $30–35B. Oracle's Stargate story has gotten messier: the Abilene expansion talks with Crusoe collapsed, Oracle's stock is down more than a third since November, and Microsoft quietly stepped in to lease the Abilene site Oracle walked away from. The lesson of the quarter for infra investors: vertically integrated names with enterprise software cushions are outperforming pure-play capacity builders.\nSources: The Decoder, Winbuzzer\n\nMicrosoft adds 1 GW in a single quarter.\nAzure added ~1 GW of data center capacity in Q2 FY26 alone and is publicly targeting a doubling of footprint within two years. Meanwhile OpenAI is actively diversifying away from exclusive Azure dependence, signing incremental capacity with CoreWeave, Oracle and Google — a reshuffling that mirrors the broader shift in which the \"preferred infrastructure partner\" title now rotates by quarter. OpenAI also paused its UK Stargate build amid energy price and regulatory concerns, the first significant geographic retreat in the Stargate program to date.",
+        "body_preview": "Nvidia closed fiscal 2026 at $215.9B revenue (+65% YoY), $120.1B net income, 71.1% gross margin — with $193.7B of that from data center alone. Guidanc",
+        "sources": [],
+        "metrics": [
+          {
+            "type": "percentage",
+            "value": "65%"
+          },
+          {
+            "type": "percentage",
+            "value": "71.1%"
+          },
+          {
+            "type": "percentage",
+            "value": "76%"
+          },
+          {
+            "type": "number",
+            "value": "9B"
+          }
+        ],
+        "companies": [
+          "OpenAI",
+          "Google",
+          "Microsoft",
+          "Meta",
+          "NVIDIA",
+          "CoreWeave"
+        ]
+      },
+      {
+        "date": "2026-04-09",
+        "section_number": 3,
+        "section_name": "Application Layer",
+        "headline": "Cursor crosses $2B ARR, reportedly raising at $50B.",
+        "body": "Four years old and already past $2B annualized revenue as of February — per investors, it's now \"well past that.\" Cursor is reportedly raising at a $50B valuation, one of the sharpest application-layer re-ratings in history. The only competitor actually cutting in is Claude Code, which Anthropic launched barely a year ago. For the \"thin wrapper\" critics, Cursor is the data point that refuses to die — distribution, workflow integration and taste turned out to be moats after all.\nSource: Fortune\n\nAnduril raising $4B at $60B, plus a $20B Army ceiling contract.\nPalmer Luckey's Anduril is raising $4B led by a16z and Thrive at a $60B valuation — double last year's mark. Sacra pegs 2025 revenue at $2.1B (+110% YoY) with $4.3B projected for 2026, implying a ~14x forward revenue multiple. Even more consequential: the U.S. Army's 5–10 year enterprise contract with a $20B ceiling, consolidating 120–130 existing orders under one vehicle. That's the rare procurement reform that actually moves revenue forward — and it makes Anduril the closest thing to a \"primes\"-tier company built in the last 30 years.\nSources: Axios, Sacra\n\nGlean raises $150M at $7.2B; Harvey at $11B.\nEnterprise search darling Glean closed a $150M Series F at $7.2B led by Wellington, just nine months after its $260M Series E — a clean 1.5x markup in three quarters. Harvey hit $11B. Both round shapes tell you the same thing: LPs increasingly want AI exposure outside of the frontier lab megarounds, and enterprise workflow names with clear ACV stories are the obvious vehicle.",
+        "body_preview": "Four years old and already past $2B annualized revenue as of February — per investors, it's now \"well past that.\" Cursor is reportedly raising at a $5",
+        "sources": [],
+        "metrics": [
+          {
+            "type": "percentage",
+            "value": "110%"
+          },
+          {
+            "type": "number",
+            "value": "$2B"
+          },
+          {
+            "type": "number",
+            "value": "$50B"
+          }
+        ],
+        "companies": [
+          "Anthropic",
+          "Claude"
+        ]
+      },
+      {
+        "date": "2026-04-09",
+        "section_number": 4,
+        "section_name": "Ecosystem & Signals",
+        "headline": "The Altman narrative problem is back.",
+        "body": "The New Yorker published an 18-month Ronan Farrow/Andrew Marantz investigation of Sam Altman — \"can he be trusted?\" — obtained from hundreds of pages of notes Dario Amodei made during his time at OpenAI. Fortune's Eye on AI frames this bluntly: OpenAI is \"a drama company\" heading into an IPO, and the drama has never been the product, it's the narrative. The retail-allocation news below suggests Friar's team is racing to lock in demand before any of it matters.\nSource: Fortune Eye on AI\n\nEclipse raises $1.3B for physical AI.\nCerebras backer Eclipse announced a $1.3B fund targeting robotics, AI infrastructure and defense manufacturing — \"built in the physical world,\" as the thesis goes. Pair this with Hermeus raising $350M for hypersonic drones and Apptronik's $520M Series A for humanoids in February, and a clear pattern emerges: the second wave of this cycle isn't software — it's the atoms that run it.",
+        "body_preview": "The New Yorker published an 18-month Ronan Farrow/Andrew Marantz investigation of Sam Altman — \"can he be trusted?\" — obtained from hundreds of pages ",
+        "sources": [],
+        "metrics": [
+          {
+            "type": "number",
+            "value": "3B"
+          },
+          {
+            "type": "number",
+            "value": "$350M"
+          }
+        ],
+        "companies": [
+          "OpenAI",
+          "Cerebras"
+        ]
+      },
+      {
+        "date": "2026-04-09",
+        "section_number": 5,
+        "section_name": "SaaS & Enterprise Software",
+        "headline": "The SaaSpocalypse is over. ServiceNow leads the recovery.",
+        "body": "After 18 months of 40% multiple compression, enterprise software has staged what Financial Content is calling the \"Spring Awakening\" — the S&P 500 Software Index is +15% off February's \"Black Tuesday\" lows. ServiceNow jumped 5.5% on April 1 alone, catalyzed by Benchmark branding it the \"AI Control Tower\" and confirmation that Now Assist is on track for a $1B run-rate by end of FY — the fastest product ramp in company history. Q1 earnings on April 22 are now the single most-watched print in enterprise software.\nSource: Financial Content\n\nSalesforce prices the death of the seat.\nAgentforce is now priced at $2 per conversation or $0.10 per autonomous action, with 2.4B agentic tasks in Q4 alone. Salesforce introduced AELA — the Agentic Enterprise License Agreement — a flat-fee, all-you-can-eat construct for customers that have already piloted and want predictable cost structures. CROs everywhere are rewriting comp plans around \"Agentic ACV.\" If you want a one-line summary of the 2026 enterprise thesis: the unit of consumption has shifted from seats to tasks, and the incumbents are winning because they own the data the tasks run on.",
+        "body_preview": "After 18 months of 40% multiple compression, enterprise software has staged what Financial Content is calling the \"Spring Awakening\" — the S&P 500 Sof",
+        "sources": [],
+        "metrics": [
+          {
+            "type": "percentage",
+            "value": "40%"
+          },
+          {
+            "type": "percentage",
+            "value": "15%"
+          },
+          {
+            "type": "percentage",
+            "value": "5.5%"
+          },
+          {
+            "type": "number",
+            "value": "$1B"
+          }
+        ],
+        "companies": [
+          "Salesforce"
+        ]
+      },
+      {
+        "date": "2026-04-09",
+        "section_number": 6,
+        "section_name": "Trading & Market Dynamics",
+        "headline": "Q1 2026 shattered every venture record that exists.",
+        "body": "Crunchbase data shows $300B invested globally in Q1 across 6,000 startups, up 150%+ quarter-over-quarter — nearly 70% of all 2025 venture spend in a single quarter. North America alone took $252.6B, 3x the prior quarter and the largest quarterly total ever. AI captured 87%+ of Q1 investment in North America and 53% globally ($59.6B). The driver was bigger rounds, not more of them — late/growth deal counts actually dropped slightly while dollars exploded. OpenAI's $110B February round (led by Amazon, Nvidia and SoftBank) was larger than any prior quarter of venture funding on record. Four of the five largest venture rounds ever closed in Q1.\nSource: Crunchbase News\n\nOpenAI IPO opens a retail window.\nCFO Sarah Friar confirmed to CNBC that OpenAI will reserve a portion of IPO shares for individual investors, citing \"really strong demand\" in its most recent private placement — a round that raised 3x its $1B target and reportedly broke one bank's order management system. Friar also disclosed that Codex crossed 3 million users from \"almost zero\" at the start of the quarter. The IPO now looks like the capstone event of this cycle, and the retail carve-out is a signal that bankers want broad distribution to absorb secondary supply.",
+        "body_preview": "Crunchbase data shows $300B invested globally in Q1 across 6,000 startups, up 150%+ quarter-over-quarter — nearly 70% of all 2025 venture spend in a s",
+        "sources": [],
+        "metrics": [
+          {
+            "type": "percentage",
+            "value": "150%"
+          },
+          {
+            "type": "percentage",
+            "value": "70%"
+          },
+          {
+            "type": "percentage",
+            "value": "87%"
+          },
+          {
+            "type": "number",
+            "value": "$300B"
+          }
+        ],
+        "companies": [
+          "OpenAI",
+          "Amazon",
+          "NVIDIA"
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-04-10",
+    "topline": [],
+    "stories": []
+  },
+  {
+    "date": "2026-04-11",
+    "topline": [],
+    "stories": []
+  },
+  {
+    "date": "2026-04-13",
+    "topline": [],
+    "stories": []
+  },
+  {
+    "date": "2026-04-14",
+    "topline": [],
+    "stories": [
+      {
+        "date": "2026-04-14",
+        "section_number": 1,
+        "section_name": "Frontier Labs",
+        "headline": "Anthropic acquires Coefficient Bio in $400M all-stock deal.",
+        "body": "The Coefficient Bio acquisition is Anthropic's clearest statement yet that Claude is not just a general assistant but a vertical platform — the biotech team folds into its healthcare/life-sciences group, joining a product surface that already touches drug discovery and clinical workflows. The deal arrives the same week Anthropic disclosed it has more than doubled its roster of million-dollar-plus customers from roughly 500 in February, and Broadcom and Google have already been called out as the quiet winners of that Anthropic meteoric growth on the silicon and cloud sides. The takeaway: Anthropic is the clearest example today of a foundation lab monetizing via enterprise verticals, not consumer subscriptions.\nSources: TechCrunch · The Next Platform\n\nxAI loses all eleven original co-founders; Musk vows a \"rebuild from the foundations.\"\nBy late March every founding scientist at xAI had departed, an astonishing unwind for a company last valued at $80B+ heading into an IPO window. Musk's comment that \"xAI was not built right first time around\" is an admission you rarely see from a lab with this capex footprint. The hires backfilling the bench — including Mistral co-founder Devendra Chaplot — signal that frontier talent is increasingly a liquid commodity, flowing toward whoever funds the next training run. For everyone else in the race, the lesson is that compute is necessary but no longer sufficient: durable research teams may be the binding constraint of 2026.\nSource: Startup Edition — AI Model Releases\n\nFrontier Model Forum turns into an anti-leak coalition.\nOpenAI, Anthropic and Google have quietly begun coordinating through the Frontier Model Forum to identify and blunt the Chinese distillation pipelines that have been siphoning outputs from cutting-edge US models. Read through: the three labs have finally decided the strategic cost of uncoordinated API abuse outweighs their appetite to compete on detection. It's a small but real shift from pure rivalry to cartel-style defense against a shared external threat, and the first time the FMF has looked like a policy body with teeth rather than a press release.\nSource: Bloomberg\n\nMistral's Voxtral TTS beats ElevenLabs in blind tests — with open weights.\nVoxtral TTS posted a 62.8% listener-preference rate against ElevenLabs' Flash v2.5 and, crucially, ships with open weights. Mistral has now put out six products in fifteen days — Small 4, Voxtral, Leanstral, Forge, a Spaces CLI and an NVIDIA partnership — in what looks like a deliberate, high-cadence challenge to closed-source voice, vision and agent leaders. ElevenLabs' $11B valuation assumes its voice moat holds; Voxtral is the first credible benchmark saying it might not.",
+        "body_preview": "The Coefficient Bio acquisition is Anthropic's clearest statement yet that Claude is not just a general assistant but a vertical platform — the biotec",
+        "sources": [
+          {
+            "name": "TechCrunch",
+            "url": "https://techcrunch.com/2026/04/03/anthropic-buys-biotech-startup-coefficient-bio-in-400m-deal-reports/"
+          },
+          {
+            "name": "Startup Edition — AI Model Releases",
+            "url": "https://blog.mean.ceo/new-ai-model-releases-news-april-2026/"
+          },
+          {
+            "name": "Bloomberg",
+            "url": "https://www.bloomberg.com/news/articles/2026-04-06/openai-anthropic-google-unite-to-combat-model-copying-in-china"
+          }
+        ],
+        "metrics": [
+          {
+            "type": "percentage",
+            "value": "62.8%"
+          },
+          {
+            "type": "number",
+            "value": "$80B"
+          },
+          {
+            "type": "number",
+            "value": "$11B"
+          }
+        ],
+        "companies": [
+          "OpenAI",
+          "Anthropic",
+          "Google",
+          "NVIDIA",
+          "Mistral",
+          "xAI",
+          "Broadcom",
+          "Claude"
+        ]
+      },
+      {
+        "date": "2026-04-14",
+        "section_number": 2,
+        "section_name": "Hyperscalers & Infrastructure",
+        "headline": "Meta & CoreWeave extend to $21B through 2032.",
+        "body": "The Meta–CoreWeave expansion is the single most consequential infrastructure deal of the week. It covers multi-site capacity, includes initial Vera Rubin deployments, and is structured to run through 2032 — an unusually long runway for what is still, technically, a neocloud. CoreWeave simultaneously disclosed it will spend $30–35B in 2026 alone on data centers, a figure that would have sounded absurd eighteen months ago and that now simply tracks the shape of the demand curve. The deal validates two theses at once: that hyperscalers will outsource material GPU capacity rather than self-build every watt, and that Rubin is shipping into real production workloads, not demos.\nSources: CIO Dive · The Next Platform\n\nAMD becomes a genuine second source — the Meta–Venice deal makes it official.\nMeta's $60B commitment across GPUs, AMD Venice CPUs and co-engineered custom silicon finally reclassifies AMD from \"negotiating leverage\" to \"deployed alternative.\" Helios (MI455X-based NVL-class systems) is guided to ship in Q3, Rubin follows in Q4, and AMD's data-center business grew 172% YoY to $16.6B last fiscal year — still roughly a tenth of NVIDIA's $193.7B data-center line, but now growing from a base hyperscalers actually plan around. The duopoly narrative is no longer aspirational.\nSources: CNBC · IBTimes\n\nHyperscaler capex creeps toward $500B.\nAWS is now guiding to $200B of 2026 capex (50%+ above 2025), Google raised its 2026 range to $175–185B, Microsoft posted a $37.5B quarter, and the big four combined are now pacing toward $470B+ for 2026. AWS is opening a Saudi region (a $5.3B build) and a German Sovereign Cloud (€7.8B through 2040); Google is standing up Sweden, South Africa, Mexico, Kuwait, Malaysia and Thailand, plus a $2B 10-year Turkey region. The build is now geopolitical as much as economic — sovereign regions, custom silicon and supply-chain hedging are where the marginal dollar is going.\nSource: Omdia\n\nMulti-cloud finally stops being a pitch.\nAWS and Google Cloud launched a joint multicloud networking product, with Azure slated to join later in 2026. After fifteen years of cold war, the hyperscalers are conceding that enterprises want to route workloads between them, not be locked into one. If this holds, it reshapes how AI data gravity gets priced — inference at the customer's preferred cloud, training wherever capacity sits.",
+        "body_preview": "The Meta–CoreWeave expansion is the single most consequential infrastructure deal of the week. It covers multi-site capacity, includes initial Vera Ru",
+        "sources": [
+          {
+            "name": "CIO Dive",
+            "url": "https://www.ciodive.com/news/meta-coreweave-strike-deal-expansion-compute-capacity/817109/"
+          },
+          {
+            "name": "CNBC",
+            "url": "https://www.cnbc.com/2026/02/17/meta-nvidia-deal-ai-data-center-chips.html"
+          },
+          {
+            "name": "Omdia",
+            "url": "https://omdia.tech.informa.com/pr/2026/mar/global-cloud-infrastructure-spending-rose-29percent-in-q4-2025-as-hyperscalers-scaled-ai-infrastructure-investment"
+          }
+        ],
+        "metrics": [
+          {
+            "type": "percentage",
+            "value": "172%"
+          },
+          {
+            "type": "percentage",
+            "value": "50%"
+          },
+          {
+            "type": "number",
+            "value": "35B"
+          },
+          {
+            "type": "number",
+            "value": "$60B"
+          }
+        ],
+        "companies": [
+          "Google",
+          "Microsoft",
+          "Meta",
+          "NVIDIA",
+          "CoreWeave"
+        ]
+      },
+      {
+        "date": "2026-04-14",
+        "section_number": 3,
+        "section_name": "Application Layer",
+        "headline": "Cursor: $1B ARR, $29.3B valuation, 100x YoY.",
+        "body": "Anysphere's $2.3B Series D at $29.3B — nearly triple its valuation five months ago — is the definitive data point that vertical AI applications can capture as much value as the labs underneath them. Cursor has crossed $1B in annualized revenue with growth compounding at 100x year over year. If you've been waiting for evidence that \"thin wrappers on OpenAI\" is an outdated frame, this is it.\nSource: Crunchbase News\n\nHarvey doubles to $11B; Glean jumps to $7.2B nine months after its Series E.\nHarvey closed $200M at $11B, bringing total capital to $1B and funding its push into embedded legal-engineering teams and agents. A week later, Glean raised $150M at $7.2B, a jump from $4.6B last summer, with Wellington leading. Both rounds share a structural signal worth highlighting: VCs are spreading bets beyond foundation model companies into category-defining application layer incumbents — lawtech and enterprise search are now judged as durable vertical platforms, not features waiting to be subsumed.\nSources: CNBC · Crunchbase\n\nAnduril lands $20B Army contract; Shield AI closes $2B at $12.7B.\nThe $20B Lattice integration award is likely the largest non-traditional defense contract in US Army history, and it is landing the same quarter Shield AI vaulted 140% to a $12.7B valuation after its Air Force deal and ran a joint autonomy-software flight with Anduril's YFQ-44A. Defense AI is now operating on a clock independent of commercial SaaS — government adoption has outpaced most private-sector benchmarks for the first cycle since cloud.\nSources: The Defense Post · TechCrunch\n\nSupabase nears a $10B round; MCP crosses 97M installs.\nPer The Information, GIC is in talks to lead a $500M raise at roughly double Supabase's fall valuation — the database-for-AI-builders thesis getting its clearest expression yet. In parallel, Anthropic's MCP crossed 97M installs in March, effectively becoming de facto infrastructure for agent-to-tool interop. The through line: the picks-and-shovels stack for agent developers is getting priced as seriously as the models themselves.",
+        "body_preview": "Anysphere's $2.3B Series D at $29.3B — nearly triple its valuation five months ago — is the definitive data point that vertical AI applications can ca",
+        "sources": [
+          {
+            "name": "Crunchbase News",
+            "url": "https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/"
+          },
+          {
+            "name": "CNBC",
+            "url": "https://www.cnbc.com/2026/03/25/legal-ai-startup-harvey-raises-200-million-at-11-billion-valuation.html"
+          },
+          {
+            "name": "The Defense Post",
+            "url": "https://thedefensepost.com/2026/03/16/us-anduril-ai-contract/"
+          }
+        ],
+        "metrics": [
+          {
+            "type": "percentage",
+            "value": "140%"
+          },
+          {
+            "type": "number",
+            "value": "3B"
+          },
+          {
+            "type": "number",
+            "value": "$1B"
+          }
+        ],
+        "companies": [
+          "OpenAI",
+          "Anthropic",
+          "Supabase"
+        ]
+      },
+      {
+        "date": "2026-04-14",
+        "section_number": 4,
+        "section_name": "Ecosystem & Signals",
+        "headline": "Stratechery: Ben Thompson's week of reframing.",
+        "body": "Thompson's April 10 piece \"Hormuz, Rushmore and a Sam Altman Story That Missed the Story\" is the argument of the week on OpenAI governance — he reads the latest press cycle as journalists anchoring on personality when the actual story is structural (OpenAI's IPO posture, Microsoft's dependence, Altman's capital stack). Paired with his earlier \"Anthropic and Alignment\" and \"Microsoft and Software Survival,\" Stratechery's April arc is essentially: the AI winners are being determined by capital structure and distribution, not model quality alone.\nSource: Stratechery\n\nNewcomer / The Information: the Kairos leak & healthcare M&A signal.\nThe Information's April 1 scoop on Claude's always-on \"Kairos\" agent, plus the Coefficient Bio acquisition report, form a single narrative — Anthropic is quietly assembling the components of a persistent, vertical-trained Claude that runs continuously rather than turn-by-turn. Newcomer's ongoing coverage of the Anthropic DOD lawsuit adds political stakes: the same company pushing agentic healthcare is also fighting to preserve its ability to serve defense customers on its own terms.\nSources: The Information · Newcomer\n\nThe Diff & Not Boring: capex-discipline is the new bull thesis.\nThe consensus forming across Byrne Hobart's The Diff and Packy McCormick's Not Boring is that the investable edge has rotated from \"who is spending most on AI\" to \"whose spending converts to ARR fastest.\" That reframes the 2026 Magnificent Seven drawdown less as an AI-doubts story and more as a return-on-invested-capital story — and explains why NVDA outperforms its customers year-to-date.",
+        "body_preview": "Thompson's April 10 piece \"Hormuz, Rushmore and a Sam Altman Story That Missed the Story\" is the argument of the week on OpenAI governance — he reads ",
+        "sources": [
+          {
+            "name": "Stratechery",
+            "url": "https://stratechery.com/"
+          },
+          {
+            "name": "The Information",
+            "url": "https://www.theinformation.com/"
+          }
+        ],
+        "metrics": [],
+        "companies": [
+          "OpenAI",
+          "Anthropic",
+          "Microsoft",
+          "Claude"
+        ]
+      },
+      {
+        "date": "2026-04-14",
+        "section_number": 5,
+        "section_name": "SaaS & Enterprise Software",
+        "headline": "Salesforce's AELA is a bet that flat-fee AI kills per-seat SaaS.",
+        "body": "Salesforce's Agentic Enterprise License Agreement bundles Agentforce deployments into a flat fee with shared-risk guarantees — a structure that explicitly breaks the per-seat model the company built its $300B market cap on. That willingness to cannibalize its own unit economics is worth paying attention to; hybrid pricing (monthly base + per-task + outcome-tied bonuses) is now the majority pattern in new enterprise AI contracts.\nSource: PR Newswire / The Futurum Group\n\nDeloitte: 75% of enterprises putting agentic AI in 2026 budgets.\nDeloitte projects that up to half of organizations will commit more than 50% of digital-transformation budgets to AI automation in 2026, with up to 75% earmarking dedicated spend on agentic AI specifically. Gartner expects 80% of enterprises will have deployed GenAI apps by year-end, up from under 5% two years ago. This is the fastest enterprise-software adoption curve ever recorded — faster than cloud, faster than mobile.\nSource: Deloitte Insights\n\nThe price lift is real: AI vendors raising 20–30%.\nMultiple SaaS vendors pushed through 20–30% price increases in Q1 to fund AI infrastructure and compute pass-throughs. Global spend on AI-enabled applications is projected to hit $644B this year, up 76% year over year. CIOs are pushing back on these hikes — expect renewal cycles in 2H to produce a wave of vendor swaps where outcomes don't match price lifts.",
+        "body_preview": "Salesforce's Agentic Enterprise License Agreement bundles Agentforce deployments into a flat fee with shared-risk guarantees — a structure that explic",
+        "sources": [
+          {
+            "name": "PR Newswire / The Futurum Group",
+            "url": "https://www.prnewswire.com/news-releases/ai-agents-force-rethink-of-saas-pricing-and-improve-customer-experiences-302734934.html"
+          },
+          {
+            "name": "Deloitte Insights",
+            "url": "https://www.deloitte.com/us/en/insights/industry/technology/technology-media-and-telecom-predictions/2026/saas-ai-agents.html"
+          }
+        ],
+        "metrics": [
+          {
+            "type": "percentage",
+            "value": "75%"
+          },
+          {
+            "type": "percentage",
+            "value": "50%"
+          },
+          {
+            "type": "percentage",
+            "value": "80%"
+          },
+          {
+            "type": "number",
+            "value": "$300B"
+          }
+        ],
+        "companies": [
+          "Salesforce"
+        ]
+      },
+      {
+        "date": "2026-04-14",
+        "section_number": 6,
+        "section_name": "Trading & Market Dynamics",
+        "headline": "Q1 venture: $300B total, 80% to AI, four names take 65%.",
+        "body": "The Crunchbase Q1 2026 print is the most extreme concentration on record: OpenAI's $122B close (March 31), Anthropic's $30B, xAI's $20B and Waymo's $16B collectively absorbed $188B — 65% of global VC. Four of the top five rounds of all time closed this quarter. This is barbell capital allocation writ large: the biggest checks are getting bigger, and everyone else is fighting for what's left.\nSource: Crunchbase News\n\nIPO window reopening: xAI June, OpenAI Q4, two Chinese labs already public.\nxAI is targeting a June 2026 IPO at $1.75T, OpenAI is prepping a Q4 print at a roughly $1T mark, and Z.ai and MiniMax both debuted on the HKEX in Q1 at >$6B apiece. If both US mega-listings clear, they will single-handedly reset the reference valuations for every private AI company.\nSource: Crunchbase Trends\n\nMag-7 divergence: NVDA leads, MSFT lags, capex scrutiny sharpens.\nThrough March 20: NVDA -7%, META -10%, MSFT -21%. NVDA is still the relative winner among megacaps despite being down YTD, because it's the only one whose AI capex cycle is pure revenue, not cost. With hyperscaler capex guides stretching to $470B+, investors are demanding clearer ROIC timelines — expect this to dominate late-April earnings commentary.",
+        "body_preview": "The Crunchbase Q1 2026 print is the most extreme concentration on record: OpenAI's $122B close (March 31), Anthropic's $30B, xAI's $20B and Waymo's $1",
+        "sources": [
+          {
+            "name": "Crunchbase News",
+            "url": "https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/"
+          },
+          {
+            "name": "Crunchbase Trends",
+            "url": "https://news.crunchbase.com/venture/2026-tech-startup-trends-ipo-ai-ma/"
+          }
+        ],
+        "metrics": [
+          {
+            "type": "percentage",
+            "value": "65%"
+          },
+          {
+            "type": "percentage",
+            "value": "7%"
+          },
+          {
+            "type": "percentage",
+            "value": "10%"
+          },
+          {
+            "type": "number",
+            "value": "$122B"
+          }
+        ],
+        "companies": [
+          "OpenAI",
+          "Anthropic",
+          "Meta",
+          "xAI",
+          "Waymo"
+        ]
+      }
+    ]
+  }
+]
