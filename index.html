@@ -1,0 +1,1962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>AI Intelligence Briefing</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <meta name="theme-color" content="#0a0a0a">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'serif': ['Instrument Serif', 'serif'],
+            'sans': ['DM Sans', 'sans-serif'],
+            'mono': ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            'dark-bg': '#0a0a0a',
+            'dark-surface': '#141414',
+            'dark-text': '#f0f0f0',
+            'dark-secondary': '#888888',
+            'accent-gold': '#c9a84c',
+            'section-blue': '#3b82f6',
+            'section-purple': '#8b5cf6',
+            'section-cyan': '#06b6d4',
+            'section-amber': '#f59e0b',
+            'section-emerald': '#10b981',
+            'section-red': '#ef4444',
+            'section-gold': '#c9a84c',
+            'section-indigo': '#6366f1',
+            'light-bg': '#fafaf7',
+            'light-surface': '#ffffff',
+            'light-text': '#1a1a1a',
+            'light-border': '#e0e0e0',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body { margin: 0; padding: 0; background-color: #0a0a0a; }
+    * { box-sizing: border-box; }
+    
+    .dark-mode {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --text: #f0f0f0;
+      --text-secondary: #888888;
+      --border: #222222;
+    }
+    
+    .light-mode {
+      --bg: #fafaf7;
+      --surface: #ffffff;
+      --text: #1a1a1a;
+      --text-secondary: #666666;
+      --border: #e0e0e0;
+    }
+    
+    .app-root {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      transition: background-color 0.2s, color 0.2s;
+    }
+    
+    .content-area {
+      padding-bottom: calc(68px + env(safe-area-inset-bottom));
+      overflow-y: auto;
+      max-height: calc(100vh - 68px - env(safe-area-inset-bottom));
+    }
+    
+    .card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+    
+    .card:active {
+      opacity: 0.9;
+    }
+    
+    .tab-bar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 68px;
+      padding-bottom: env(safe-area-inset-bottom);
+      background-color: var(--surface);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      z-index: 100;
+    }
+
+    .tab-icon {
+      min-height: 68px;
+      min-width: 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-secondary);
+      padding-top: 8px;
+      gap: 2px;
+    }
+
+    .tab-icon.active {
+      color: #c9a84c;
+    }
+
+    .tab-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      color: inherit;
+      margin-top: 2px;
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .stagger-item {
+      animation: slideUp 0.4s ease-out backwards;
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .section-pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-right: 6px;
+      margin-bottom: 6px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s;
+    }
+    
+    .section-pill-01 { background-color: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+    .section-pill-02 { background-color: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
+    .section-pill-03 { background-color: rgba(6, 182, 212, 0.15); color: #06b6d4; }
+    .section-pill-04 { background-color: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+    .section-pill-05 { background-color: rgba(16, 185, 129, 0.15); color: #10b981; }
+    .section-pill-06 { background-color: rgba(239, 68, 68, 0.15); color: #ef4444; }
+    .section-pill-07 { background-color: rgba(201, 168, 76, 0.15); color: #c9a84c; }
+    .section-pill-08 { background-color: rgba(99, 102, 241, 0.15); color: #6366f1; }
+    
+    .section-pill.active {
+      filter: brightness(1.3);
+      background-color: #c9a84c;
+      color: #0a0a0a;
+    }
+    
+    .headline {
+      font-family: 'Instrument Serif', serif;
+      font-size: 15px;
+      font-weight: bold;
+      color: var(--text);
+      line-height: 1.35;
+      margin: 0;
+    }
+
+    .body-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin: 0;
+    }
+    
+    .topline-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid #c9a84c;
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+    }
+
+    .topline-header {
+      font-family: 'Instrument Serif', serif;
+      font-size: 11px;
+      font-weight: bold;
+      color: #c9a84c;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .topline-item {
+      margin-bottom: 5px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topline-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .topline-text {
+      font-size: 11px;
+      line-height: 1.35;
+      color: var(--text);
+    }
+    
+    .source-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    
+    .source-link:hover {
+      color: #c9a84c;
+      border-bottom-color: #c9a84c;
+    }
+    
+    .expanded-body {
+      max-height: 2000px;
+    }
+    
+    .collapsed-body {
+      max-height: 0;
+      overflow: hidden;
+    }
+    
+    .body-expanded-text {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.6;
+      margin-top: 8px;
+    }
+    
+    .date-separator {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 12px;
+      margin: 20px 0 16px 0;
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: 1px;
+    }
+    
+    .search-highlight {
+      background-color: rgba(201, 168, 76, 0.3);
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-secondary);
+    }
+    
+    .grid-2col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    @media (max-width: 767px) {
+      .grid-2col {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .section-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .section-card:active {
+      opacity: 0.8;
+    }
+
+    .section-number {
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .section-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 13px;
+      font-weight: bold;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .section-count {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 12px 16px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+    }
+    
+    .search-input::placeholder {
+      color: var(--text-secondary);
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: #c9a84c;
+    }
+    
+    .mode-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    
+    .mode-tab {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: 8px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    .mode-tab.active {
+      background-color: #c9a84c;
+      color: #0a0a0a;
+      border-color: #c9a84c;
+    }
+    
+    .chat-placeholder {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--text-secondary);
+    }
+    
+    .chat-placeholder-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 16px;
+      font-weight: bold;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    
+    .example-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 16px;
+    }
+    
+    .example-chip {
+      padding: 6px 12px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    
+    .bookmark-icon {
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    
+    .bookmark-icon:hover {
+      color: #c9a84c;
+    }
+    
+    .bookmark-icon.filled {
+      color: #c9a84c;
+    }
+    
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background-color: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .top-bar-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 17px;
+      font-weight: bold;
+      color: var(--text);
+      text-align: center;
+      flex: 1;
+    }
+    
+    .top-bar-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-secondary);
+      position: absolute;
+      right: 16px;
+    }
+    
+    .horizontal-scroll {
+      display: flex;
+      gap: 8px;
+      padding: 8px 12px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .horizontal-scroll::-webkit-scrollbar {
+      height: 4px;
+    }
+    
+    .horizontal-scroll::-webkit-scrollbar-track {
+      background: var(--surface);
+    }
+    
+    .horizontal-scroll::-webkit-scrollbar-thumb {
+      background: var(--text-secondary);
+      border-radius: 2px;
+    }
+
+    .refresh-indicator {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #c9a84c;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      overflow: hidden;
+      transition: height 0.2s ease-out;
+    }
+
+    .spinner {
+      display: inline-block;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .refresh-button {
+      display: inline-block;
+      cursor: pointer;
+      transition: transform 0.2s;
+      font-size: 16px;
+      min-width: 44px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+    }
+
+    .refresh-button:hover {
+      color: #c9a84c;
+    }
+
+    .refresh-button.spinning {
+      animation: spin 0.8s linear infinite;
+      color: #c9a84c;
+    }
+
+    .toast-notification {
+      position: fixed;
+      top: 56px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--surface);
+      color: #c9a84c;
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      z-index: 200;
+      animation: toastFadeInOut 2s ease-in-out;
+    }
+
+    .source-chip {
+      display: inline-block;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .source-chip:hover {
+      color: #c9a84c;
+      border-color: #c9a84c;
+    }
+
+    @keyframes toastFadeInOut {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .feed-content {
+      position: relative;
+    }
+
+    .company-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 8px;
+    }
+
+    .ticker-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+      color: #0a0a0a;
+    }
+
+    .ticker-badge.public {
+      background-color: #10b981;
+      color: #0a0a0a;
+    }
+
+    .ticker-badge.private {
+      background-color: #f59e0b;
+      color: #0a0a0a;
+    }
+
+    .ticker-badge.subsidiary {
+      background-color: #8b5cf6;
+      color: #0a0a0a;
+    }
+
+    .ticker-badge.foreign {
+      background-color: #888888;
+      color: #ffffff;
+    }
+
+    .filing-link {
+      display: inline-block;
+      padding: 4px 10px;
+      margin-right: 6px;
+      margin-bottom: 6px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .filing-link:hover {
+      color: #c9a84c;
+      border-color: #c9a84c;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  
+  <!-- React, Babel, and ReactDOM -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <script type="text/babel">
+const { useState, useEffect, useMemo } = React;
+
+// Embedded briefings data
+
+  // BriefingsData will be loaded via fetch in the provider below
+  const useBriefings = () => {
+    const context = React.useContext(BriefingsContext);
+    if (!context || !context.briefingsData) return null;
+    return context.briefingsData;
+  };
+
+  const BriefingsContext = React.createContext(null);
+
+
+// SVG Icons for tab bar
+const IconHome = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+    <polyline points="9 22 9 12 15 12 15 22" />
+  </svg>
+);
+
+const IconFeed = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <line x1="8" y1="6" x2="21" y2="6" />
+    <line x1="8" y1="12" x2="21" y2="12" />
+    <line x1="8" y1="18" x2="21" y2="18" />
+    <line x1="3" y1="6" x2="3.01" y2="6" />
+    <line x1="3" y1="12" x2="3.01" y2="12" />
+    <line x1="3" y1="18" x2="3.01" y2="18" />
+  </svg>
+);
+
+const IconGrid = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <rect x="3" y="3" width="7" height="7" />
+    <rect x="14" y="3" width="7" height="7" />
+    <rect x="14" y="14" width="7" height="7" />
+    <rect x="3" y="14" width="7" height="7" />
+  </svg>
+);
+
+const IconSearch = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <circle cx="11" cy="11" r="8" />
+    <path d="m21 21-4.35-4.35" />
+  </svg>
+);
+
+const IconGear = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <circle cx="12" cy="12" r="3" />
+    <path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m5.08 5.08l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m5.08-5.08l4.24-4.24" />
+  </svg>
+);
+
+const IconFilings = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
+    <polyline points="13 2 13 9 20 9" />
+    <line x1="9" y1="14" x2="15" y2="14" />
+    <line x1="9" y1="18" x2="15" y2="18" />
+  </svg>
+);
+
+const IconSun = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <circle cx="12" cy="12" r="5" />
+    <line x1="12" y1="1" x2="12" y2="3" />
+    <line x1="12" y1="21" x2="12" y2="23" />
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+    <line x1="1" y1="12" x2="3" y2="12" />
+    <line x1="21" y1="12" x2="23" y2="12" />
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+  </svg>
+);
+
+const IconMoon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+);
+
+const IconBookmark = ({ filled }) => (
+  filled ? (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="#c9a84c">
+      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+    </svg>
+  ) : (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+    </svg>
+  )
+);
+
+// Tab bar component
+const TabBar = ({ activeTab, setActiveTab, isDarkMode, setIsDarkMode }) => {
+  const tabs = [
+    { id: 'home', label: 'Home', icon: IconHome },
+    { id: 'feed', label: 'Feed', icon: IconFeed },
+    { id: 'filings', label: 'Filings', icon: IconFilings },
+    { id: 'search', label: 'Search', icon: IconSearch },
+    { id: 'settings', label: 'Settings', icon: IconGear }
+  ];
+
+  return (
+    <div className="tab-bar">
+      {tabs.map(tab => {
+        const Icon = tab.icon;
+        return (
+          <div
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`tab-icon ${activeTab === tab.id ? 'active' : ''}`}
+          >
+            <Icon />
+            <span className="tab-label">{tab.label}</span>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+// Card expand component
+const StoryCard = ({ story, isBookmarked, onBookmark, compact = false }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const sectionColors = {
+    1: 'section-pill-01', 2: 'section-pill-02', 3: 'section-pill-03',
+    4: 'section-pill-04', 5: 'section-pill-05', 6: 'section-pill-06',
+    7: 'section-pill-07', 8: 'section-pill-08'
+  };
+
+  const sectionColor = sectionColors[story.section_number] || 'section-pill-01';
+
+  const formatDate = (dateStr) => {
+    const date = new Date(dateStr + 'T00:00:00Z');
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  };
+
+  return (
+    <div className="card fade-in" style={{ marginBottom: '8px', cursor: 'pointer' }}>
+      <div onClick={() => setIsExpanded(!isExpanded)} style={{ padding: compact ? '10px 12px' : '12px 14px' }}>
+        {/* Row 1: Section pill + bookmark icon */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+          <span className={`section-pill ${sectionColor}`}>{String(story.section_number).padStart(2, '0')} {story.section_name}</span>
+          <div
+            className={`bookmark-icon ${isBookmarked ? 'filled' : ''}`}
+            onClick={(e) => { e.stopPropagation(); onBookmark(story); }}
+            style={{ minWidth: '44px', minHeight: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
+            <IconBookmark filled={isBookmarked} />
+          </div>
+        </div>
+
+        {/* Row 2: Headline */}
+        <h3 className="headline" style={{ marginBottom: '8px' }}>{story.headline}</h3>
+
+        {/* Row 3: Body preview */}
+        <p className="body-text" style={{
+          marginBottom: compact ? '0px' : '8px',
+          whiteSpace: compact ? 'nowrap' : 'normal',
+          overflow: compact ? 'hidden' : 'visible',
+          textOverflow: compact ? 'ellipsis' : 'clip',
+          fontSize: compact ? '13px' : '13px'
+        }}>
+          {story.body_preview}
+        </p>
+
+        {/* Row 4: Source chips + Date */}
+        {!compact && (
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginBottom: '0' }}>
+            {story.sources.map((s, idx) => (
+              <a
+                key={idx}
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="source-chip"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {s.name}
+              </a>
+            ))}
+          </div>
+        )}
+
+        {/* Date in bottom-right corner */}
+        <div style={{
+          marginTop: compact ? '0px' : '8px',
+          display: 'flex',
+          justifyContent: 'flex-end',
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: '10px',
+          color: 'var(--text-secondary)'
+        }}>
+          {formatDate(story.date)}
+        </div>
+      </div>
+
+      {/* Expanded content */}
+      {isExpanded && (
+        <div style={{ padding: '0 14px 14px 14px', borderTop: '1px solid var(--border)' }}>
+          <div className="body-expanded-text">{story.body}</div>
+          <div style={{ marginTop: '12px', fontSize: '12px', color: 'var(--text-secondary)' }}>
+            <strong>Sources:</strong>
+            <div style={{ marginTop: '8px' }}>
+              {story.sources.map((s, idx) => (
+                <div key={idx}>
+                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="source-link">→ {s.name}</a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+// Top line card
+const TopLineCard = ({ toplines }) => {
+  if (!toplines || toplines.length === 0) return null;
+  return (
+    <div className="topline-card">
+      <div className="topline-header">The Top Line</div>
+      {toplines.map((line, idx) => (
+        <div key={idx} className="topline-item">
+          <div className="topline-text">{line}</div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+// Home screen
+const HomeScreen = ({ bookmarkedStories, setBookmarkedStories, isDarkMode, setIsDarkMode, onSelectSection }) => {
+  const context = React.useContext(BriefingsContext);
+  const BRIEFINGS_DATA = context?.briefingsData;
+
+  const allStories = React.useMemo(() => {
+    return BRIEFINGS_DATA ? BRIEFINGS_DATA.flatMap(b => b.stories).filter(s => s.section_number !== 7) : [];
+  }, [BRIEFINGS_DATA]);
+
+  const topLineContent = React.useMemo(() => {
+    if (!BRIEFINGS_DATA || BRIEFINGS_DATA.length === 0) return [];
+    for (let i = BRIEFINGS_DATA.length - 1; i >= 0; i--) {
+      if (BRIEFINGS_DATA[i].topline && BRIEFINGS_DATA[i].topline.length > 0) {
+        return BRIEFINGS_DATA[i].topline;
+      }
+    }
+    return [];
+  }, [BRIEFINGS_DATA]);
+
+  const topStories = React.useMemo(() => {
+    if (!BRIEFINGS_DATA) return [];
+    const recentBriefings = BRIEFINGS_DATA.slice(-3);
+    const recentStories = recentBriefings.flatMap(b => b.stories).filter(s => s.section_number !== 7);
+    const sorted = recentStories.sort((a, b) => {
+      if (b.sources.length !== a.sources.length) {
+        return b.sources.length - a.sources.length;
+      }
+      return a.section_number - b.section_number;
+    });
+    return sorted.slice(0, 8);
+  }, [BRIEFINGS_DATA]);
+
+  const handleBookmark = (story) => {
+    const storyId = `${story.date}-${story.section_number}-${story.headline}`;
+    setBookmarkedStories(prev => {
+      if (prev.find(s => `${s.date}-${s.section_number}-${s.headline}` === storyId)) {
+        return prev.filter(s => `${s.date}-${s.section_number}-${s.headline}` !== storyId);
+      }
+      return [...prev, story];
+    });
+  };
+
+  const isBookmarked = (story) => {
+    const storyId = `${story.date}-${story.section_number}-${story.headline}`;
+    return bookmarkedStories.some(s => `${s.date}-${s.section_number}-${s.headline}` === storyId);
+  };
+
+  if (!BRIEFINGS_DATA) return <div style={{padding: '40px', textAlign: 'center', color: '#888', background: '#0a0a0a', minHeight: '100vh'}}>Loading...</div>;
+
+  const latestDate = BRIEFINGS_DATA.length > 0 ? BRIEFINGS_DATA[BRIEFINGS_DATA.length - 1].date : '';
+  const latestDateFormatted = latestDate ? new Date(latestDate + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+  const now = new Date();
+  const timeStr = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+
+  const sectionNames = {
+    1: 'Frontier Labs', 2: 'Hyperscalers', 3: 'Application Layer',
+    4: 'Ecosystem', 5: 'SaaS & Enterprise', 6: 'Trading & Markets',
+    8: 'NeoLabs'
+  };
+
+  const sectionColors = {
+    1: '#3b82f6', 2: '#8b5cf6', 3: '#06b6d4', 4: '#f59e0b',
+    5: '#10b981', 6: '#ef4444', 8: '#6366f1'
+  };
+
+  const storyCountPerSection = {};
+  const latestBriefing = BRIEFINGS_DATA[BRIEFINGS_DATA.length - 1];
+  latestBriefing.stories.forEach(story => {
+    if (story.section_number !== 7) {
+      storyCountPerSection[story.section_number] = (storyCountPerSection[story.section_number] || 0) + 1;
+    }
+  });
+
+  return (
+    <div className="content-area">
+      <div className="top-bar">
+        <div style={{ flex: 1 }} />
+        <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: '22px', fontWeight: 'bold', color: 'var(--text)', textAlign: 'center', flex: 1 }}>AI Intelligence Briefing</div>
+        <div
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          style={{ minWidth: '44px', minHeight: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-secondary)' }}
+        >
+          {isDarkMode ? <IconSun /> : <IconMoon />}
+        </div>
+      </div>
+
+      <div style={{ padding: '16px' }}>
+        {/* Header with timestamp */}
+        <div style={{ marginBottom: '16px', textAlign: 'center', fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', color: 'var(--text-secondary)' }}>
+          Last updated {latestDateFormatted} · {timeStr}
+        </div>
+
+        {/* Browse by Section pills - horizontal scroll */}
+        <div className="horizontal-scroll" style={{ marginBottom: '16px' }}>
+          {[1, 2, 3, 4, 5, 6, 8].map(num => (
+            <span
+              key={num}
+              className={`section-pill section-pill-0${num}`}
+              onClick={() => onSelectSection(num)}
+              style={{ minWidth: 'max-content', cursor: 'pointer' }}
+            >
+              {sectionNames[num]}
+            </span>
+          ))}
+        </div>
+
+        {/* Top Line card */}
+        {topLineContent.length > 0 && (
+          <div style={{ marginBottom: '16px' }}>
+            <TopLineCard toplines={topLineContent} />
+          </div>
+        )}
+
+        {/* Top Stories */}
+        <div style={{ marginBottom: '24px' }}>
+          <h2 style={{ fontFamily: "'Instrument Serif', serif", fontSize: '16px', fontWeight: 'bold', color: 'var(--text)', margin: '0 0 12px 0' }}>Top Stories</h2>
+          {topStories.map((story, idx) => (
+            <StoryCard
+              key={idx}
+              story={story}
+              isBookmarked={isBookmarked(story)}
+              onBookmark={handleBookmark}
+              compact={true}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Feed screen
+const FeedScreen = ({ bookmarkedStories, setBookmarkedStories, initialSection, clearInitialSection, isDarkMode, setIsDarkMode }) => {
+  const context = React.useContext(BriefingsContext);
+  const BRIEFINGS_DATA = context?.briefingsData;
+  const fetchBriefingsData = context?.fetchBriefingsData;
+
+  const [selectedSection, setSelectedSection] = useState(initialSection || null);
+  const [pullDistance, setPullDistance] = useState(0);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [lastUpdatedTime, setLastUpdatedTime] = useState(null);
+  const [isManualRefreshing, setIsManualRefreshing] = useState(false);
+  const touchStartY = React.useRef(0);
+  const contentRef = React.useRef(null);
+
+  useEffect(() => {
+    if (initialSection) {
+      setSelectedSection(initialSection);
+      if (clearInitialSection) clearInitialSection();
+    }
+  }, [initialSection]);
+
+  // Refresh handler (used by pull gesture + manual button)
+  const triggerRefresh = React.useCallback(async () => {
+    if (isRefreshing || isManualRefreshing || !fetchBriefingsData) return;
+    setIsRefreshing(true);
+    setIsManualRefreshing(true);
+    try {
+      await fetchBriefingsData(true);
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+      setLastUpdatedTime(timeStr);
+      setTimeout(() => setLastUpdatedTime(null), 2500);
+    } catch (e) {
+      console.error('Refresh failed', e);
+    } finally {
+      setTimeout(() => {
+        setIsRefreshing(false);
+        setIsManualRefreshing(false);
+        setPullDistance(0);
+      }, 500);
+    }
+  }, [isRefreshing, isManualRefreshing, fetchBriefingsData]);
+
+  // Pull-to-refresh touch handlers
+  useEffect(() => {
+    const el = contentRef.current;
+    if (!el) return;
+
+    let isPulling = false;
+
+    const onTouchStart = (e) => {
+      if (el.scrollTop <= 0) {
+        touchStartY.current = e.touches[0].clientY;
+        isPulling = true;
+      } else {
+        isPulling = false;
+      }
+    };
+
+    const onTouchMove = (e) => {
+      if (!isPulling || isRefreshing) return;
+      const deltaY = e.touches[0].clientY - touchStartY.current;
+      if (deltaY > 0 && el.scrollTop <= 0) {
+        e.preventDefault();
+        setPullDistance(Math.min(deltaY * 0.5, 100));
+      } else if (deltaY < 0) {
+        isPulling = false;
+        setPullDistance(0);
+      }
+    };
+
+    const onTouchEnd = () => {
+      if (!isPulling) return;
+      isPulling = false;
+      if (pullDistance > 60) {
+        triggerRefresh();
+      } else {
+        setPullDistance(0);
+      }
+    };
+
+    el.addEventListener('touchstart', onTouchStart, { passive: true });
+    el.addEventListener('touchmove', onTouchMove, { passive: false });
+    el.addEventListener('touchend', onTouchEnd, { passive: true });
+
+    return () => {
+      el.removeEventListener('touchstart', onTouchStart);
+      el.removeEventListener('touchmove', onTouchMove);
+      el.removeEventListener('touchend', onTouchEnd);
+    };
+  }, [pullDistance, isRefreshing, triggerRefresh]);
+
+  // Build feed with relevance scoring or date sorting
+  const feedData = useMemo(() => {
+    if (!BRIEFINGS_DATA) return [];
+
+    if (selectedSection) {
+      // When section filter is active: show day separators, sort by date desc within section
+      const allStories = [];
+      for (let i = BRIEFINGS_DATA.length - 1; i >= 0; i--) {
+        const briefing = BRIEFINGS_DATA[i];
+        let stories = briefing.stories.filter(s => s.section_number === selectedSection);
+        stories.sort((a, b) => a.section_number - b.section_number);
+        if (stories.length > 0) {
+          allStories.push({ date: briefing.date, stories });
+        }
+      }
+      return allStories;
+    } else {
+      // Default (no section filter): all stories sorted by relevance, NO day separators
+      const allStories = [];
+      for (let i = 0; i < BRIEFINGS_DATA.length; i++) {
+        allStories.push(...BRIEFINGS_DATA[i].stories.filter(s => s.section_number !== 7));
+      }
+
+      const minDate = BRIEFINGS_DATA[0]?.date ? new Date(BRIEFINGS_DATA[0].date) : new Date();
+      const toplineStrings = BRIEFINGS_DATA.flatMap(b => b.topline || []).map(t => t.toLowerCase());
+
+      const storiesWithScore = allStories.map(story => {
+        const storyDate = new Date(story.date);
+        const daysSinceMin = Math.floor((storyDate - minDate) / (1000 * 60 * 60 * 24));
+        const daysBucket = Math.min(daysSinceMin, 10);
+        const inTopline = toplineStrings.some(t =>
+          story.headline.toLowerCase().includes(t.slice(0, 30)) ||
+          story.body_preview.toLowerCase().includes(t.slice(0, 30))
+        );
+        const relevanceScore = (daysBucket * 10) + (story.sources.length * 2) + (inTopline ? 5 : 0);
+        return { story, relevanceScore };
+      });
+
+      storiesWithScore.sort((a, b) => b.relevanceScore - a.relevanceScore);
+      return [{ date: null, stories: storiesWithScore.map(s => s.story) }];
+    }
+  }, [BRIEFINGS_DATA, selectedSection]);
+
+  // Early return AFTER all hooks are called (React Rules of Hooks)
+  if (!BRIEFINGS_DATA) return <div style={{padding: '40px', textAlign: 'center', color: '#888', background: '#0a0a0a', minHeight: '100vh'}}>Loading...</div>;
+
+  const handleBookmark = (story) => {
+    const storyId = `${story.date}-${story.section_number}-${story.headline}`;
+    setBookmarkedStories(prev => {
+      if (prev.find(s => `${s.date}-${s.section_number}-${s.headline}` === storyId)) {
+        return prev.filter(s => `${s.date}-${s.section_number}-${s.headline}` !== storyId);
+      }
+      return [...prev, story];
+    });
+  };
+
+  const isBookmarked = (story) => {
+    const storyId = `${story.date}-${story.section_number}-${story.headline}`;
+    return bookmarkedStories.some(s => `${s.date}-${s.section_number}-${s.headline}` === storyId);
+  };
+
+  const formatDate = (dateStr) => {
+    const date = new Date(dateStr + 'T00:00:00Z');
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  };
+
+  const sectionNames = {
+    1: 'Frontier Labs', 2: 'Hyperscalers', 3: 'Application Layer',
+    4: 'Ecosystem', 5: 'SaaS & Enterprise', 6: 'Trading & Markets',
+    8: 'NeoLabs'
+  };
+
+  return (
+    <div className="content-area" ref={contentRef} style={{ position: 'relative' }}>
+      {lastUpdatedTime && (
+        <div className="toast-notification">Updated {lastUpdatedTime}</div>
+      )}
+
+      <div
+        className="refresh-indicator"
+        style={{
+          height: `${isRefreshing ? 50 : pullDistance}px`,
+          transition: isRefreshing ? 'none' : 'height 0.2s ease-out'
+        }}
+      >
+        {isRefreshing ? (
+          <span><span className="spinner">↻</span> Refreshing...</span>
+        ) : pullDistance > 60 ? (
+          <span>↑ Release to refresh</span>
+        ) : pullDistance > 0 ? (
+          <span>↓ Pull to refresh</span>
+        ) : null}
+      </div>
+
+      <div style={{ transform: `translateY(${isRefreshing ? 50 : pullDistance}px)`, transition: isRefreshing ? 'none' : 'transform 0.2s ease-out' }}>
+      <div className="top-bar">
+        <div
+          className={`refresh-button ${isManualRefreshing ? 'spinning' : ''}`}
+          onClick={triggerRefresh}
+          style={{ minWidth: '44px', minHeight: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          title="Refresh"
+        >↻</div>
+        <div className="top-bar-title">Feed</div>
+        <div
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          style={{ minWidth: '44px', minHeight: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-secondary)' }}
+        >
+          {isDarkMode ? <IconSun /> : <IconMoon />}
+        </div>
+      </div>
+
+      {/* Section filter pills */}
+      <div className="horizontal-scroll">
+        <div
+          className={`section-pill ${!selectedSection ? 'active' : 'section-pill-01'}`}
+          onClick={() => setSelectedSection(null)}
+          style={{ minWidth: 'max-content' }}
+        >
+          All
+        </div>
+        {[1, 2, 3, 4, 5, 6, 8].map(num => (
+          <div
+            key={num}
+            className={`section-pill section-pill-0${num} ${selectedSection === num ? 'active' : ''}`}
+            onClick={() => setSelectedSection(num)}
+            style={{ minWidth: 'max-content' }}
+          >
+            {sectionNames[num]}
+          </div>
+        ))}
+      </div>
+
+      {/* Feed content with conditional day separators */}
+      <div style={{ padding: '12px 16px 0 16px' }}>
+        {feedData.length > 0 ? (
+          feedData.map(({ date, stories }) => (
+            <React.Fragment key={date || 'relevance'}>
+              {stories.length > 0 && (
+                <>
+                  {date && selectedSection && <div className="date-separator">{formatDate(date)}</div>}
+                  {stories.map((story, idx) => (
+                    <StoryCard
+                      key={idx}
+                      story={story}
+                      isBookmarked={isBookmarked(story)}
+                      onBookmark={handleBookmark}
+                    />
+                  ))}
+                </>
+              )}
+            </React.Fragment>
+          ))
+        ) : (
+          <div className="empty-state">
+            <p>No stories found</p>
+          </div>
+        )}
+      </div>
+      </div>
+    </div>
+  );
+};
+
+// Filings screen
+const FilingsScreen = ({ isDarkMode, setIsDarkMode }) => {
+  const context = React.useContext(BriefingsContext);
+  const BRIEFINGS_DATA = context?.briefingsData;
+  const fetchBriefingsData = context?.fetchBriefingsData;
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [lastUpdatedTime, setLastUpdatedTime] = useState(null);
+
+  const COMPANY_TICKERS = {
+    'NVIDIA': { ticker: 'NVDA', cik: '0001045810', exchange: 'NASDAQ' },
+    'Meta': { ticker: 'META', cik: '0001326801', exchange: 'NASDAQ' },
+    'Microsoft': { ticker: 'MSFT', cik: '0000789019', exchange: 'NASDAQ' },
+    'Apple': { ticker: 'AAPL', cik: '0000320193', exchange: 'NASDAQ' },
+    'Amazon': { ticker: 'AMZN', cik: '0001018724', exchange: 'NASDAQ' },
+    'Google': { ticker: 'GOOGL', cik: '0001652044', exchange: 'NASDAQ' },
+    'Tesla': { ticker: 'TSLA', cik: '0001318605', exchange: 'NASDAQ' },
+    'Salesforce': { ticker: 'CRM', cik: '0001108524', exchange: 'NYSE' },
+    'Broadcom': { ticker: 'AVGO', cik: '0001730168', exchange: 'NASDAQ' },
+    'Intel': { ticker: 'INTC', cik: '0000050863', exchange: 'NASDAQ' },
+    'Qualcomm': { ticker: 'QCOM', cik: '0000804328', exchange: 'NASDAQ' },
+    'Palantir': { ticker: 'PLTR', cik: '0001321655', exchange: 'NASDAQ' },
+    'Snowflake': { ticker: 'SNOW', cik: '0001640147', exchange: 'NYSE' },
+    'Oracle': { ticker: 'ORCL', cik: '0001341439', exchange: 'NYSE' },
+    'IBM': { ticker: 'IBM', cik: '0000051143', exchange: 'NYSE' },
+    'Adobe': { ticker: 'ADBE', cik: '0000796343', exchange: 'NASDAQ' },
+    'Datadog': { ticker: 'DDOG', cik: '0001561550', exchange: 'NASDAQ' },
+    'CrowdStrike': { ticker: 'CRWD', cik: '0001535527', exchange: 'NASDAQ' },
+    'Palo Alto Networks': { ticker: 'PANW', cik: '0001327567', exchange: 'NASDAQ' },
+    'Cisco': { ticker: 'CSCO', cik: '0000858877', exchange: 'NASDAQ' },
+    'CoreWeave': { ticker: 'CRWV', cik: '0001769628', exchange: 'NASDAQ' },
+    'Alibaba': { ticker: 'BABA', cik: '0001577552', exchange: 'NYSE' },
+    'Baidu': { ticker: 'BIDU', cik: '0001329099', exchange: 'NASDAQ' },
+    'TSMC': { ticker: 'TSM', cik: '0001046179', exchange: 'NYSE' },
+    'ARM': { ticker: 'ARM', cik: '0001973239', exchange: 'NASDAQ' },
+    'GitLab': { ticker: 'GTLB', cik: '0001653482', exchange: 'NASDAQ' },
+    'OpenAI': { status: 'private' },
+    'Anthropic': { status: 'private' },
+    'xAI': { status: 'private' },
+    'Mistral': { status: 'private' },
+    'Cerebras': { status: 'private', note: 'S-1 filed; IPO roadshow active' },
+    'Groq': { status: 'private' },
+    'Scale AI': { status: 'private' },
+    'Cohere': { status: 'private' },
+    'Hugging Face': { status: 'private' },
+    'ElevenLabs': { status: 'private' },
+    'Stripe': { status: 'private' },
+    'Databricks': { status: 'private' },
+    'Notion': { status: 'private' },
+    'Docker': { status: 'private' },
+    'Supabase': { status: 'private' },
+    'Replit': { status: 'private' },
+    'Vercel': { status: 'private' },
+    'Netlify': { status: 'private' },
+    'Modal': { status: 'private' },
+    'SpaceX': { status: 'private' },
+    'ByteDance': { status: 'private' },
+    'Waymo': { status: 'subsidiary', parent: 'Alphabet (GOOGL)' },
+    'DeepMind': { status: 'subsidiary', parent: 'Alphabet (GOOGL)' },
+    'GitHub': { status: 'subsidiary', parent: 'Microsoft (MSFT)' },
+    'Slack': { status: 'subsidiary', parent: 'Salesforce (CRM)' },
+    'Samsung': { status: 'foreign', note: 'Listed on Korea Exchange (005930.KS)' },
+    'Tencent': { status: 'foreign', note: 'Listed on Hong Kong (0700.HK)' }
+  };
+
+  const excludedModels = ['Claude', 'Mythos', 'Opus', 'Haiku', 'Sonnet', 'Gemini', 'Grok', 'LLaMA'];
+
+  const companiesList = useMemo(() => {
+    if (!BRIEFINGS_DATA) return [];
+    const companyMentions = {};
+    BRIEFINGS_DATA.forEach(b => {
+      b.stories.forEach(s => {
+        if (s.companies) {
+          s.companies.forEach(comp => {
+            if (!excludedModels.includes(comp)) {
+              companyMentions[comp] = (companyMentions[comp] || 0) + 1;
+            }
+          });
+        }
+      });
+    });
+    return Object.keys(companyMentions)
+      .filter(name => COMPANY_TICKERS[name])
+      .map(name => ({ name, mentions: companyMentions[name] }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, [BRIEFINGS_DATA]);
+
+  const filteredCompanies = useMemo(() => {
+    if (!searchQuery.trim()) return companiesList;
+    const q = searchQuery.toLowerCase();
+    return companiesList.filter(c =>
+      c.name.toLowerCase().includes(q) ||
+      (COMPANY_TICKERS[c.name].ticker && COMPANY_TICKERS[c.name].ticker.toLowerCase().includes(q))
+    );
+  }, [companiesList, searchQuery]);
+
+  const triggerRefresh = React.useCallback(async () => {
+    if (isRefreshing || !fetchBriefingsData) return;
+    setIsRefreshing(true);
+    try {
+      await fetchBriefingsData(true);
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+      setLastUpdatedTime(timeStr);
+      setTimeout(() => setLastUpdatedTime(null), 2500);
+    } catch (e) {
+      console.error('Refresh failed', e);
+    } finally {
+      setTimeout(() => {
+        setIsRefreshing(false);
+      }, 500);
+    }
+  }, [isRefreshing, fetchBriefingsData]);
+
+  if (!BRIEFINGS_DATA) return <div style={{padding: '40px', textAlign: 'center', color: '#888'}}>Loading...</div>;
+
+  const renderCompanyCard = (company) => {
+    const tickerInfo = COMPANY_TICKERS[company.name];
+    const isPublic = tickerInfo.cik !== undefined;
+    const isPrivate = tickerInfo.status === 'private';
+    const isSubsidiary = tickerInfo.status === 'subsidiary';
+    const isForeign = tickerInfo.status === 'foreign';
+
+    return (
+      <div key={company.name} className="company-card">
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+          <h3 style={{ fontFamily: "'Instrument Serif', serif", fontSize: '14px', fontWeight: 'bold', color: 'var(--text)', margin: 0 }}>
+            {company.name}
+          </h3>
+          {isPublic && (
+            <span className={`ticker-badge public`}>{tickerInfo.ticker}</span>
+          )}
+          {isPrivate && (
+            <span className={`ticker-badge private`}>PRIVATE</span>
+          )}
+          {isSubsidiary && (
+            <span className={`ticker-badge subsidiary`}>SUBSIDIARY</span>
+          )}
+          {isForeign && (
+            <span className={`ticker-badge foreign`}>FOREIGN</span>
+          )}
+        </div>
+
+        <div style={{ fontSize: '11px', color: 'var(--text-secondary)', marginBottom: '10px' }}>
+          Mentioned in {company.mentions} {company.mentions === 1 ? 'story' : 'stories'}
+        </div>
+
+        {isPublic && (
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+            {['10-K', '10-Q', '8-K', 'S-1'].map(type => (
+              <a
+                key={type}
+                href={`https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${tickerInfo.cik}&type=${type}&dateb=&owner=include&count=10`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="filing-link"
+              >
+                {type}
+              </a>
+            ))}
+          </div>
+        )}
+        {isPrivate && (
+          <div style={{ fontSize: '11px', color: 'var(--text-secondary)', fontStyle: 'italic' }}>
+            Private company — no SEC filings{tickerInfo.note ? `. ${tickerInfo.note}` : '.'}
+          </div>
+        )}
+        {isSubsidiary && (
+          <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
+            Subsidiary of {tickerInfo.parent} — see parent's filings
+          </div>
+        )}
+        {isForeign && (
+          <div style={{ fontSize: '11px', color: 'var(--text-secondary)', fontStyle: 'italic' }}>
+            {tickerInfo.note}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  return (
+    <div className="content-area">
+      {lastUpdatedTime && (
+        <div className="toast-notification">Updated {lastUpdatedTime}</div>
+      )}
+      <div className="top-bar">
+        <div
+          className={`refresh-button ${isRefreshing ? 'spinning' : ''}`}
+          onClick={triggerRefresh}
+          style={{ minWidth: '44px', minHeight: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          title="Refresh"
+        >↻</div>
+        <div className="top-bar-title">Filings</div>
+        <div
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          style={{ minWidth: '44px', minHeight: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-secondary)' }}
+        >
+          {isDarkMode ? <IconSun /> : <IconMoon />}
+        </div>
+      </div>
+
+      <div style={{ padding: '16px' }}>
+        <div style={{ marginBottom: '12px' }}>
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search companies..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+
+        <div style={{ marginBottom: '12px', fontSize: '13px', color: 'var(--text-secondary)' }}>
+          SEC filings for companies in coverage
+        </div>
+
+        <div style={{ marginBottom: '24px' }}>
+          {filteredCompanies.length > 0 ? (
+            filteredCompanies.map(company => renderCompanyCard(company))
+          ) : (
+            <div className="empty-state">No companies found</div>
+          )}
+        </div>
+
+        <div style={{ fontSize: '10px', color: 'var(--text-secondary)', textAlign: 'center', padding: '16px 0', borderTop: '1px solid var(--border)', marginTop: '24px' }}>
+          Data from SEC EDGAR. Links open directly to the SEC filing search.
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Sections screen
+const SectionsScreen = ({ onSelectSection, isDarkMode, setIsDarkMode }) => {
+  const BRIEFINGS_DATA = useBriefings();
+  if (!BRIEFINGS_DATA) return <div style={{padding: '40px', textAlign: 'center', color: '#888'}}>Loading...</div>;
+  const sections = [
+    { num: 1, name: 'Frontier Labs', color: '#3b82f6' },
+    { num: 2, name: 'Hyperscalers', color: '#8b5cf6' },
+    { num: 3, name: 'Application Layer', color: '#06b6d4' },
+    { num: 4, name: 'Ecosystem', color: '#f59e0b' },
+    { num: 5, name: 'SaaS & Enterprise', color: '#10b981' },
+    { num: 6, name: 'Trading & Markets', color: '#ef4444' },
+    { num: 8, name: 'NeoLabs', color: '#6366f1' }
+  ];
+
+  const storyCountPerSection = {};
+  const latestBriefing = BRIEFINGS_DATA[BRIEFINGS_DATA.length - 1];
+  latestBriefing.stories.forEach(story => {
+    if (story.section_number !== 7) {
+      storyCountPerSection[story.section_number] = (storyCountPerSection[story.section_number] || 0) + 1;
+    }
+  });
+
+  return (
+    <div className="content-area">
+      <div className="top-bar">
+        <div style={{ flex: 1 }} />
+        <div className="top-bar-title">Sections</div>
+        <div
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          style={{ minWidth: '44px', minHeight: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-secondary)' }}
+        >
+          {isDarkMode ? <IconSun /> : <IconMoon />}
+        </div>
+      </div>
+
+      <div style={{ padding: '16px' }}>
+        <div className="grid-2col">
+          {sections.map(section => (
+            <div
+              key={section.num}
+              className="section-card"
+              onClick={() => onSelectSection(section.num)}
+              style={{
+                borderLeft: `4px solid ${section.color}`
+              }}
+            >
+              <div className="section-number" style={{ color: section.color }}>
+                {String(section.num).padStart(2, '0')}
+              </div>
+              <div className="section-name">{section.name}</div>
+              <div className="section-count">{storyCountPerSection[section.num] || 0} stories today</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Search screen
+const SearchScreen = ({ bookmarkedStories, setBookmarkedStories, isDarkMode, setIsDarkMode }) => {
+  const context = React.useContext(BriefingsContext);
+  const BRIEFINGS_DATA = context?.briefingsData;
+  const fetchBriefingsData = context?.fetchBriefingsData;
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchMode, setSearchMode] = useState('search');
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [lastUpdatedTime, setLastUpdatedTime] = useState(null);
+
+  const allStories = useMemo(() => {
+    return BRIEFINGS_DATA ? BRIEFINGS_DATA.flatMap(b => b.stories).filter(s => s.section_number !== 7) : [];
+  }, [BRIEFINGS_DATA]);
+
+  const searchResults = useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    const query = searchQuery.toLowerCase();
+    return allStories.filter(story =>
+      story.headline.toLowerCase().includes(query) ||
+      story.body.toLowerCase().includes(query) ||
+      story.section_name.toLowerCase().includes(query)
+    );
+  }, [searchQuery, allStories]);
+
+  if (!BRIEFINGS_DATA) return <div style={{padding: '40px', textAlign: 'center', color: '#888', background: '#0a0a0a', minHeight: '100vh'}}>Loading...</div>;
+
+  const handleBookmark = (story) => {
+    const storyId = `${story.date}-${story.section_number}-${story.headline}`;
+    setBookmarkedStories(prev => {
+      if (prev.find(s => `${s.date}-${s.section_number}-${s.headline}` === storyId)) {
+        return prev.filter(s => `${s.date}-${s.section_number}-${s.headline}` !== storyId);
+      }
+      return [...prev, story];
+    });
+  };
+
+  const isBookmarked = (story) => {
+    const storyId = `${story.date}-${story.section_number}-${story.headline}`;
+    return bookmarkedStories.some(s => `${s.date}-${s.section_number}-${s.headline}` === storyId);
+  };
+
+  const triggerRefresh = React.useCallback(async () => {
+    if (isRefreshing || !fetchBriefingsData) return;
+    setIsRefreshing(true);
+    try {
+      await fetchBriefingsData(true);
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+      setLastUpdatedTime(timeStr);
+      setTimeout(() => setLastUpdatedTime(null), 2500);
+    } catch (e) {
+      console.error('Refresh failed', e);
+    } finally {
+      setTimeout(() => {
+        setIsRefreshing(false);
+      }, 500);
+    }
+  }, [isRefreshing, fetchBriefingsData]);
+
+  const highlightQuery = (text) => {
+    if (!searchQuery.trim()) return text;
+    const parts = text.split(new RegExp(`(${searchQuery.trim()})`, 'gi'));
+    return parts.map((part, idx) =>
+      part.toLowerCase() === searchQuery.toLowerCase()
+        ? `<span class="search-highlight">${part}</span>`
+        : part
+    ).join('');
+  };
+
+  return (
+    <div className="content-area">
+      {lastUpdatedTime && (
+        <div className="toast-notification">Updated {lastUpdatedTime}</div>
+      )}
+      <div className="top-bar">
+        <div
+          className={`refresh-button ${isRefreshing ? 'spinning' : ''}`}
+          onClick={triggerRefresh}
+          style={{ minWidth: '44px', minHeight: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          title="Refresh"
+        >↻</div>
+        <div className="top-bar-title">Search</div>
+        <div
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          style={{ minWidth: '44px', minHeight: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-secondary)' }}
+        >
+          {isDarkMode ? <IconSun /> : <IconMoon />}
+        </div>
+      </div>
+
+      <div style={{ padding: '16px' }}>
+        <div style={{ marginBottom: '16px' }}>
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search stories..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+
+        <div className="mode-tabs">
+          <button
+            className={`mode-tab ${searchMode === 'search' ? 'active' : ''}`}
+            onClick={() => setSearchMode('search')}
+          >
+            Search
+          </button>
+          <button
+            className={`mode-tab ${searchMode === 'chat' ? 'active' : ''}`}
+            onClick={() => setSearchMode('chat')}
+          >
+            AI Chat
+          </button>
+        </div>
+
+        {searchMode === 'search' ? (
+          <>
+            {searchQuery ? (
+              searchResults.length > 0 ? (
+                <div>
+                  {searchResults.slice(0, 50).map((story, idx) => (
+                    <StoryCard
+                      key={idx}
+                      story={story}
+                      isBookmarked={isBookmarked(story)}
+                      onBookmark={handleBookmark}
+                      showDate={true}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="empty-state">No results found</div>
+              )
+            ) : (
+              <div className="empty-state">Enter a search term to get started</div>
+            )}
+          </>
+        ) : (
+          <div className="chat-placeholder">
+            <div className="chat-placeholder-title">AI Chat Coming Soon</div>
+            <p>AI Chat requires an API connection. Coming soon — you'll be able to query the full briefing archive conversationally.</p>
+            <div className="example-chips">
+              <div className="example-chip">CoreWeave deals</div>
+              <div className="example-chip">OpenAI IPO timeline</div>
+              <div className="example-chip">Biggest funding rounds</div>
+              <div className="example-chip">Meta AI strategy</div>
+              <div className="example-chip">GPU supply chain</div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+// Settings screen
+const SettingsScreen = ({ isDarkMode, setIsDarkMode, bookmarkedStories, setBookmarkedStories }) => {
+  const context = React.useContext(BriefingsContext);
+  const BRIEFINGS_DATA = context?.briefingsData;
+  const fetchBriefingsData = context?.fetchBriefingsData;
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [lastUpdatedTime, setLastUpdatedTime] = useState(null);
+
+  const triggerRefresh = React.useCallback(async () => {
+    if (isRefreshing || !fetchBriefingsData) return;
+    setIsRefreshing(true);
+    try {
+      await fetchBriefingsData(true);
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+      setLastUpdatedTime(timeStr);
+      setTimeout(() => setLastUpdatedTime(null), 2500);
+    } catch (e) {
+      console.error('Refresh failed', e);
+    } finally {
+      setTimeout(() => {
+        setIsRefreshing(false);
+      }, 500);
+    }
+  }, [isRefreshing, fetchBriefingsData]);
+
+  if (!BRIEFINGS_DATA) return <div style={{padding: '40px', textAlign: 'center', color: '#888'}}>Loading...</div>;
+  const totalStories = BRIEFINGS_DATA.reduce((sum, b) => sum + b.stories.length, 0);
+  const dateRange = `${BRIEFINGS_DATA[0].date} to ${BRIEFINGS_DATA[BRIEFINGS_DATA.length - 1].date}`;
+
+  const handleBookmark = (story) => {
+    const storyId = `${story.date}-${story.section_number}-${story.headline}`;
+    setBookmarkedStories(prev => {
+      if (prev.find(s => `${s.date}-${s.section_number}-${s.headline}` === storyId)) {
+        return prev.filter(s => `${s.date}-${s.section_number}-${s.headline}` !== storyId);
+      }
+      return [...prev, story];
+    });
+  };
+
+  const isBookmarked = (story) => {
+    const storyId = `${story.date}-${story.section_number}-${story.headline}`;
+    return bookmarkedStories.some(s => `${s.date}-${s.section_number}-${s.headline}` === storyId);
+  };
+
+  return (
+    <div className="content-area">
+      {lastUpdatedTime && (
+        <div className="toast-notification">Updated {lastUpdatedTime}</div>
+      )}
+      <div className="top-bar">
+        <div
+          className={`refresh-button ${isRefreshing ? 'spinning' : ''}`}
+          onClick={triggerRefresh}
+          style={{ minWidth: '44px', minHeight: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          title="Refresh"
+        >↻</div>
+        <div className="top-bar-title">Settings</div>
+        <div
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          style={{ minWidth: '44px', minHeight: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-secondary)' }}
+        >
+          {isDarkMode ? <IconSun /> : <IconMoon />}
+        </div>
+      </div>
+
+      <div style={{ padding: '16px' }}>
+        {/* Bookmarks section */}
+        <div className="card" style={{ marginBottom: '16px', padding: '16px' }}>
+          <h3 className="headline" style={{ marginBottom: '12px', fontSize: '16px' }}>Bookmarks</h3>
+          {bookmarkedStories.length > 0 ? (
+            <div>
+              {bookmarkedStories.map((story, idx) => (
+                <StoryCard
+                  key={idx}
+                  story={story}
+                  isBookmarked={isBookmarked(story)}
+                  onBookmark={handleBookmark}
+                  showDate={true}
+                />
+              ))}
+            </div>
+          ) : (
+            <p className="body-text">No bookmarks yet — tap the bookmark icon on any story to save it here.</p>
+          )}
+        </div>
+
+        {/* Archive stats */}
+        <div className="card" style={{ marginBottom: '16px', padding: '16px' }}>
+          <h3 className="headline" style={{ marginBottom: '12px', fontSize: '16px' }}>Archive Stats</h3>
+          <div className="body-text" style={{ marginBottom: '8px' }}>
+            <strong>Total Stories:</strong> {totalStories}
+          </div>
+          <div className="body-text" style={{ marginBottom: '8px' }}>
+            <strong>Total Briefings:</strong> {BRIEFINGS_DATA.length}
+          </div>
+          <div className="body-text">
+            <strong>Date Range:</strong> {dateRange}
+          </div>
+        </div>
+
+        {/* Theme toggle */}
+        <div className="card" style={{ marginBottom: '16px', padding: '16px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <h3 className="headline" style={{ marginBottom: 0, fontSize: '16px' }}>Dark Mode</h3>
+            <button
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              style={{
+                padding: '8px 16px',
+                borderRadius: '6px',
+                background: isDarkMode ? '#c9a84c' : 'var(--surface)',
+                color: isDarkMode ? '#0a0a0a' : 'var(--text)',
+                border: '1px solid var(--border)',
+                cursor: 'pointer',
+                fontWeight: 'bold'
+              }}
+            >
+              {isDarkMode ? 'On' : 'Off'}
+            </button>
+          </div>
+        </div>
+
+        {/* About section */}
+        <div className="card" style={{ padding: '16px' }}>
+          <h3 className="headline" style={{ marginBottom: '12px', fontSize: '16px' }}>About</h3>
+          <div className="body-text" style={{ marginBottom: '8px' }}>
+            <strong>AI Intelligence Briefing</strong>
+          </div>
+          <div className="body-text" style={{ marginBottom: '8px' }}>
+            <strong>Built by:</strong> NeoLabs
+          </div>
+          <div className="body-text">
+            <strong>Version:</strong> v1.0.0
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Main app component
+const App = ({ isDarkMode, setIsDarkMode }) => {
+  const briefingsData = useBriefings();
+  const [activeTab, setActiveTab] = useState('home');
+  const [bookmarkedStories, setBookmarkedStories] = useState([]);
+  const [selectedSectionFromSections, setSelectedSectionFromSections] = useState(null);
+
+  useEffect(() => {
+    const appRoot = document.querySelector('.app-root');
+    if (!appRoot) return;
+    if (isDarkMode) {
+      appRoot.classList.remove('light-mode');
+      appRoot.classList.add('dark-mode');
+    } else {
+      appRoot.classList.remove('dark-mode');
+      appRoot.classList.add('light-mode');
+    }
+  }, [isDarkMode]);
+
+  // Early return AFTER all hooks are called
+  if (!briefingsData) return <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', backgroundColor: '#0a0a0a', color: '#c9a84c', fontFamily: 'DM Sans, sans-serif', fontSize: '16px'}}>Loading briefings...</div>;
+
+  const handleSelectSectionFromSections = (sectionNum) => {
+    setSelectedSectionFromSections(sectionNum);
+    setActiveTab('feed');
+  };
+
+  return (
+    <div className="app-root dark-mode">
+      {activeTab === 'home' && <HomeScreen bookmarkedStories={bookmarkedStories} setBookmarkedStories={setBookmarkedStories} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} onSelectSection={handleSelectSectionFromSections} />}
+      {activeTab === 'feed' && <FeedScreen bookmarkedStories={bookmarkedStories} setBookmarkedStories={setBookmarkedStories} initialSection={selectedSectionFromSections} clearInitialSection={() => setSelectedSectionFromSections(null)} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />}
+      {activeTab === 'filings' && <FilingsScreen isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />}
+      {activeTab === 'search' && <SearchScreen bookmarkedStories={bookmarkedStories} setBookmarkedStories={setBookmarkedStories} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />}
+      {activeTab === 'settings' && <SettingsScreen isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} bookmarkedStories={bookmarkedStories} setBookmarkedStories={setBookmarkedStories} />}
+
+      <TabBar activeTab={activeTab} setActiveTab={setActiveTab} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+    </div>
+  );
+};
+
+// Render the app
+
+  const AppWithProvider = () => {
+    const [briefingsData, setBriefingsData] = React.useState(null);
+    const [error, setError] = React.useState(null);
+    const [isDarkMode, setIsDarkMode] = React.useState(true);
+
+    // Read theme from cookie on mount
+    React.useEffect(() => {
+      const theme = document.cookie.split('; ').find(row => row.startsWith('theme='));
+      if (theme) {
+        setIsDarkMode(theme.split('=')[1] === 'dark');
+      }
+    }, []);
+
+    // Write theme to cookie when it changes
+    React.useEffect(() => {
+      const value = isDarkMode ? 'dark' : 'light';
+      document.cookie = `theme=${value}; max-age=31536000; path=/`;
+    }, [isDarkMode]);
+
+    // Reusable fetch function that can be called from components
+    const fetchBriefingsData = React.useCallback((forceRefresh = false) => {
+      const url = forceRefresh ? `./data.json?t=${Date.now()}` : './data.json';
+      return fetch(url)
+        .then(response => {
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+          return response.json();
+        })
+        .then(data => {
+          setBriefingsData(data);
+          return data;
+        })
+        .catch(err => {
+          console.error('Failed to load briefings data:', err);
+          setError(err.message);
+          setBriefingsData([]); // Empty array so we don't show loading forever
+          throw err;
+        });
+    }, []);
+
+    React.useEffect(() => {
+      fetchBriefingsData();
+    }, [fetchBriefingsData]);
+
+    return (
+      <BriefingsContext.Provider value={{briefingsData, error, fetchBriefingsData}}>
+        <App isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+      </BriefingsContext.Provider>
+    );
+  };
+
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(<AppWithProvider />);
+  
+  // Register Service Worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js').catch(err => {
+      console.log('Service Worker registration failed:', err);
+    });
+  }
+</script>
+</body>
+</html>
